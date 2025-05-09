@@ -55,28 +55,31 @@
       <p>Phone: +234 800 123 4567</p>
     </div>
   </footer>  <script>
-    const carousels = document.querySelectorAll('.image-carousel');
-    carousels.forEach((carousel) => {
-      const images = carousel.querySelectorAll('img');
-      let index = 0;
+<script>
+const carousels = document.querySelectorAll('.image-carousel');
 
-      const showImage = (i) => {
-        images.forEach(img => img.classList.remove('active'));
-        images[i].classList.add('active');
-      };
+carousels.forEach((carousel) => {
+  const images = carousel.querySelectorAll('img');
+  let index = 0;
 
-      const prevBtn = carousel.nextElementSibling.querySelector('.prev');
-      const nextBtn = carousel.nextElementSibling.querySelector('.next');
+  const showImage = (i) => {
+    images.forEach(img => img.classList.remove('active'));
+    images[i].classList.add('active');
+  };
 
-      prevBtn.addEventListener('click', () => {
-        index = (index > 0) ? index - 1 : images.length - 1;
-        showImage(index);
-      });
+  const prevBtn = carousel.parentElement.querySelector('.prev');
+  const nextBtn = carousel.parentElement.querySelector('.next');
 
-      nextBtn.addEventListener('click', () => {
-        index = (index < images.length - 1) ? index + 1 : 0;
-        showImage(index);
-      });
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    showImage(index);
+  });
 
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    showImage(index);
+  });
+});
+</script>
   </script></body>
 </html>
