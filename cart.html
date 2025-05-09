@@ -8,49 +8,76 @@
       background: black;
       color: white;
       font-family: Arial, sans-serif;
+      padding: 20px;
     }
-    .cart-item {
-      border: 1px solid white;
-      padding: 10px;
-      margin: 10px;
+    .product {
+      background: #1c1c1c;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
     }
     button {
-      padding: 5px 10px;
-      margin-top: 10px;
+      background: #00aced;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .btn-clear {
+      background: red;
+    }
+    .checkout {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Your Shopping Cart</h1>
+  <h1>Your Cart</h1>
   <div id="cart-items"></div>
-  <h3 id="total"></h3>
-  <a href="product.html" style="color: #00aced;">Continue Shopping</a>
+
+  <div class="checkout">
+    <h2>Total: <span id="total"></span></h2>
+    <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
+    <br><br>
+    <!-- PayPal button -->
+    <button onclick="alert('Redirecting to PayPal...')">Pay with PayPal</button>
+
+    <!-- Cash App button -->
+    <button onclick="alert('Use $QVCcart on Cash App to pay')">Pay with Cash App</button>
+  </div>
 
   <script>
-    function displayCart() {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const cartContainer = document.getElementById("cart-items");
+    function loadCart() {
+      const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      const container = document.getElementById('cart-items');
       let total = 0;
 
-      if (cart.length === 0) {
-        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
-        document.getElementById("total").innerText = "";
+      if (cartItems.length === 0) {
+        container.innerHTML = "<p>Your cart is empty.</p>";
+        document.getElementById('total').textContent = "₦0";
         return;
       }
 
-      cartContainer.innerHTML = "";
-      cart.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML = `<strong>${item.name}</strong><br>₦${item.price.toLocaleString()}`;
-        cartContainer.appendChild(div);
+      container.innerHTML = "";
+      cartItems.forEach(item => {
         total += item.price;
+        const div = document.createElement('div');
+        div.className = "product";
+        div.innerHTML = `<h3>${item.name}</h3><p>₦${item.price.toLocaleString()}</p>`;
+        container.appendChild(div);
       });
 
-      document.getElementById("total").innerText = "Total: ₦" + total.toLocaleString();
+      document.getElementById('total').textContent = "₦" + total.toLocaleString();
     }
 
-    displayCart();
+    function clearCart() {
+      localStorage.removeItem('cart');
+      loadCart();
+    }
+
+    loadCart();
   </script>
 </body>
 </html>
