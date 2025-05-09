@@ -128,3 +128,10 @@ main {
   margin: 10px;
   border-radius: 8px;
 }
+/* Logo Styling */
+.logo {
+  max-width: 150px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
