@@ -4,103 +4,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QVC-cart | Online Store</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #ff4500;
-      color: #fff;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header img {
-      height: 50px;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .hero {
-      padding: 20px;
-      text-align: center;
-    }
-    .product-card {
-      max-width: 400px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .image-carousel {
-      position: relative;
-      overflow: hidden;
-    }
-    .image-carousel img {
-      width: 100%;
-      display: none;
-      border-radius: 8px;
-    }
-    .image-carousel img.active {
-      display: block;
-    }
-    .carousel_buttons {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-    }
-    .carousel_buttons button {
-      background: rgba(0,0,0,0.5);
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .dots {
-      text-align: center;
-      margin-top: 10px;
-    }
-    .dots span {
-      height: 10px;
-      width: 10px;
-      background: #ccc;
-      border-radius: 50%;
-      display: inline-block;
-      margin: 0 4px;
-    }
-    .dots span.active {
-      background: #333;
-    }
-    .payment {
-      margin-top: 15px;
-    }
-    .footer {
-      text-align: center;
-      padding: 15px;
-      background: #222;
-      color: #fff;
-      margin-top: 30px;
-    }
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
+    header { background: #ff4500; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    header img { height: 50px; }
+    nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; }
+    .hero { padding: 20px; text-align: center; }
+    .product-card { max-width: 400px; margin: 20px auto; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .image-carousel { position: relative; overflow: hidden; }
+    .image-carousel img { width: 100%; display: none; border-radius: 8px; }
+    .image-carousel img.active { display: block; }
+    .carousel_buttons { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); }
+    .carousel_buttons button { background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+    .dots { text-align: center; margin-top: 10px; }
+    .dots span { height: 10px; width: 10px; background: #ccc; border-radius: 50%; display: inline-block; margin: 0 4px; }
+    .dots span.active { background: #333; }
+    .payment { margin-top: 15px; }
+    .footer { text-align: center; padding: 15px; background: #222; color: #fff; margin-top: 30px; }
+    .add-to-cart { margin-top: 15px; padding: 10px; background: #ff4500; color: #fff; border: none; border-radius: 5px; width: 100%; cursor: pointer; font-size: 16px; }
   </style>
 </head>
 <body>
   <header>
     <img src="qvc-cart-logo.png" alt="QVC-cart Logo" />
     <nav>
-      <a href="#">Home</a>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
       <a href="#products">Products</a>
-      <a href="#cart">Cart</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>  <div class="hero">
@@ -126,10 +55,9 @@
         <img src="paypal.png" alt="PayPal" style="height: 30px;"> 
         <img src="cashapp.png" alt="Cash App" style="height: 30px;">
       </div>
+      <button class="add-to-cart">Add to Cart</button>
     </div>
-  </section>  <footer class="footer">
-    &copy; 2024 QVC-cart. All rights reserved.
-  </footer>  <script>
+  </section>  <footer class="footer">&copy; 2024 QVC-cart. All rights reserved.</footer>  <script>
     const carousels = document.querySelectorAll('.image-carousel');
     carousels.forEach((carousel) => {
       const images = carousel.querySelectorAll('img');
@@ -187,6 +115,13 @@
 
       showImage(index);
       autoplay();
+    });
+
+    document.querySelector('.add-to-cart').addEventListener('click', () => {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name: 'Apple iPhone 12 – 64GB', price: 250000 });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Product added to cart!');
     });
   </script></body>
 </html>
