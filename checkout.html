@@ -14,3 +14,31 @@
 
   <a href="index.html" style="color: #00aced;">Go back to Home</a>
 </body>
+<a href="index.html" style="color: #00aced;">Go back to Home</a>
+
+  <!-- Paystack Payment Button -->
+  <h3 style="margin-top: 30px;">Or Pay with Card or Bank Transfer</h3>
+  <button type="button" onclick="payWithPaystack()" style="padding: 10px 20px; background-color: #0a66c2; color: white; border: none; cursor: pointer;">
+    Pay with Paystack
+  </button>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+    function payWithPaystack() {
+      var handler = PaystackPop.setup({
+        key: 'YOUR_PUBLIC_KEY_HERE',
+        email: 'customer@email.com',
+        amount: 50000 * 100,
+        currency: 'NGN',
+        ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+        callback: function(response) {
+          alert('Payment successful! Reference: ' + response.reference);
+        },
+        onClose: function() {
+          alert('Payment window closed.');
+        }
+      });
+      handler.openIframe();
+    }
+  </script>
+</body>
