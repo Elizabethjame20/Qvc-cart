@@ -1,57 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QVC-cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QVC-Cart - AliExpress Style</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    header {
+      background-color: #ff4747;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .products-section {
+      padding: 20px 40px;
+    }
+    .products-section h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .product-card h3 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+    .product-card .price {
+      color: #e53935;
+      font-weight: bold;
+    }
+    .product-card .description {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .product-card button {
+      background-color: #ff4747;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .product-card button:hover {
+      background-color: #d63d3d;
+    }
+  </style>
 </head>
 <body>
-  <header class="main-header">
-    <div class="container">
-      <div class="logo">
-        <img src="images/qvc-cart-logo.png" alt="QVC Cart Logo" height="40" />
-      </div>
-      <nav class="navbar">
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div class="cart-icon">
-        <a href="#"><img src="images/cart-icon.png" alt="Cart" height="24" /></a>
-      </div>
-    </div>
-  </header>
+  <header>
+    <h1>QVC-Cart</h1>
+    <nav>
+      <!-- You can add links here -->
+    </nav>
+  </header>  <div class="products-section">
+    <h2>Featured Products</h2>
+    <div class="product-grid"><!-- iPhone 12 Product Card -->
+  <div class="product-card">
+    <img src="images/iphone12.jpg" alt="iPhone 12" />
+    <h3>iPhone 12 (64GB) - Blue</h3>
+    <p class="price">₦230,000</p>
+    <p class="description">Clean UK used, 64GB storage, Face ID working perfectly.</p>
+    <button>Add to Cart</button>
+  </div>
 
-  <main class="main-content">
-    <section class="hero">
-      <h1>Welcome to QVC-cart</h1>
-      <p>Shop electronics, fashion, phones, and more</p>
-      <a href="#" class="btn-shop">Start Shopping</a>
-    </section>
+</div>
 
-    <section class="product-grid">
-      <div class="product-card">
-        <h2>iPhone 12 Pro</h2>
-        <div class="product-gallery">
-          <img src="images/iphone1.jpg" alt="iPhone 12 Pro - Front" class="product-img" />
-          <img src="images/iphone2.jpg" alt="iPhone 12 Pro - Back" class="product-img" />
-          <img src="images/iphone3.jpg" alt="iPhone 12 Pro - Side" class="product-img" />
-        </div>
-        <p><strong>Price:</strong> ₦553,538.92 <del>₦814,029.25</del> (32% off)</p>
-        <p><strong>Features:</strong> 6GB RAM, 128/256/512GB ROM, 6.1" OLED, A14, Face ID</p>
-        <p><strong>Shipping:</strong> ₦15,286.80 · Delivery: June 4–16</p>
-        <p><strong>Status:</strong> In Stock (5.0 | 22 sold)</p>
-        <a href="cart.html" class="btn">Add to Cart</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="main-footer">
-    <div class="container">
-      <p>&copy; 2025 QVC-cart. All rights reserved.</p>
-    </div>
-  </footer>
+  </div>
 </body>
 </html>
