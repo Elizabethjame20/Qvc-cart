@@ -1,96 +1,44 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QVC-Cart - AliExpress Style</title>
+  <title>QVC Cart - iPhone 12 Pro</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: #ff4747;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-    .products-section {
-      padding: 20px 40px;
-    }
-    .products-section h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-    }
-    .product-card {
-      background-color: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .product-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-    .product-card h3 {
-      font-size: 18px;
-      margin: 10px 0 5px;
-    }
-    .product-card .price {
-      color: #e53935;
-      font-weight: bold;
-    }
-    .product-card .description {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 10px;
-    }
-    .product-card button {
-      background-color: #ff4747;
-      border: none;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .product-card button:hover {
-      background-color: #d63d3d;
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <h1>QVC-Cart</h1>
-    <nav>
-      <!-- You can add links here -->
-    </nav>
-  </header>  <div class="products-section">
-    <h2>Featured Products</h2>
-    <div class="product-grid"><!-- iPhone 12 Product Card -->
-  <div class="product-card">
-    <img src="images/iphone12.jpg" alt="iPhone 12" />
-    <h3>iPhone 12 (64GB) - Blue</h3>
-    <p class="price">₦230,000</p>
-    <p class="description">Clean UK used, 64GB storage, Face ID working perfectly.</p>
-    <button>Add to Cart</button>
-  </div>
+  <header class="header">
+    <img src="qvc-cart-logo.png" alt="QVC Cart Logo" class="logo" />
+  </header>
 
-</div>
+  <main class="product-page">
+    <div class="gallery">
+      <img src="iphone1.jpg" alt="Front" />
+      <img src="iphone2.jpg" alt="Back" />
+      <img src="iphone3.jpg" alt="Side" />
+    </div>
 
-  </div>
+    <div class="details">
+      <h1>NGN553,538.92 <span class="old-price">NGN814,029.25</span> <span class="discount">32% off</span></h1>
+      <p class="note">Pay in NGN, Shop the World</p>
+      <p class="offer">NGN1,452.20 off over NGN29,043.95</p>
+      <p class="desc">
+        iPhone 12 Pro 6GB RAM 12Pro 128/256/512GB ROM 6.1" Super Retina OLED A14 IOS Face ID Unlocked 5G 98%
+      </p>
+      <p class="rating">5.0 | 22 sold</p>
+
+      <div class="commitment">
+        <p><strong>Shipping:</strong> NGN15,286.80</p>
+        <p><strong>Delivery:</strong> Jun 04 – 16, item ships within 14 days</p>
+        <p><strong>Return & Refund Policy</strong></p>
+        <p><strong>Security & Privacy</strong></p>
+      </div>
+
+      <div class="actions">
+        <button class="add">Add to cart</button>
+        <button class="buy">Buy now</button>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
