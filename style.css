@@ -64,3 +64,41 @@ header {
   color: #2c3e50;
   margin-top: 10px;
 }
+.qvc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.qvc-header .logo img {
+  height: 40px;
+}
+
+.qvc-header .search-bar {
+  flex: 1;
+  margin: 0 20px;
+  display: flex;
+}
+
+.qvc-header .search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.qvc-header .search-bar button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #ff4747;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.qvc-header .cart-icon img {
+  height: 30px;
+}
