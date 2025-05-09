@@ -2,34 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QVC Cart - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QVC-cart</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- Header with Logo -->
-  <header>
-    <img src="qvc-cart-logo.png" alt="QVC Cart Logo" class="logo" />
+  <header class="main-header">
+    <div class="container">
+      <div class="logo">
+        <img src="images/qvc-cart-logo.png" alt="QVC Cart Logo" height="40" />
+      </div>
+      <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="cart-icon">
+        <a href="#"><img src="images/cart-icon.png" alt="Cart" height="24" /></a>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section class="product-highlight">
-      <h2>iPhone 12 Pro</h2>
-      <div class="product-gallery">
-        <img src="iphone1.jpg" alt="iPhone 12 Pro - Front" class="product-img" />
-        <img src="iphone2.jpg" alt="iPhone 12 Pro - Back" class="product-img" />
-        <img src="iphone3.jpg" alt="iPhone 12 Pro - Side" class="product-img" />
+  <main class="main-content">
+    <section class="hero">
+      <h1>Welcome to QVC-cart</h1>
+      <p>Shop electronics, fashion, phones, and more</p>
+      <a href="#" class="btn-shop">Start Shopping</a>
+    </section>
 
+    <section class="product-grid">
+      <div class="product-card">
+        <h2>iPhone 12 Pro</h2>
+        <div class="product-gallery">
+          <img src="images/iphone1.jpg" alt="iPhone 12 Pro - Front" class="product-img" />
+          <img src="images/iphone2.jpg" alt="iPhone 12 Pro - Back" class="product-img" />
+          <img src="images/iphone3.jpg" alt="iPhone 12 Pro - Side" class="product-img" />
+        </div>
         <p><strong>Price:</strong> ₦553,538.92 <del>₦814,029.25</del> (32% off)</p>
         <p><strong>Features:</strong> 6GB RAM, 128/256/512GB ROM, 6.1" OLED, A14, Face ID</p>
         <p><strong>Shipping:</strong> ₦15,286.80 · Delivery: June 4–16</p>
         <p><strong>Status:</strong> In Stock (5.0 | 22 sold)</p>
-
         <a href="cart.html" class="btn">Add to Cart</a>
       </div>
     </section>
   </main>
 
+  <footer class="main-footer">
+    <div class="container">
+      <p>&copy; 2025 QVC-cart. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
