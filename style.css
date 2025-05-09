@@ -92,3 +92,33 @@ main {
   display: block;
   margin: 10px auto;
 }
+.logo {
+  max-width: 150px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+.product-gallery {
+  text-align: center;
+}
+
+.product-img {
+  max-width: 200px;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #005f73;
+}
