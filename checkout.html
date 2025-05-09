@@ -1,27 +1,49 @@
-<body style="background: black; color: white; font-family: Arial, sans-serif; text-align: center; padding: 40px;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout Page</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    a.button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .paypal { background: #0070ba; }
+    .cashapp { background: green; }
+    .paystack { background: #0a66c2; border: none; cursor: pointer; }
+    h1, h3 { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
   <h1>Checkout Page</h1>
   <p>Choose to pay ₦50K upfront via PayPal or Cash App.</p>
 
   <!-- Payment Buttons -->
-  <div style="margin: 30px 0;">
-    <a href="https://www.paypal.me/YourPayPalUsername" target="_blank" style="display: inline-block; background: #0070ba; color: white; padding: 12px 20px; margin: 10px; text-decoration: none; border-radius: 8px;">
-      Pay with PayPal
-    </a>
-    <a href="https://cash.app/$YourCashAppTag" target="_blank" style="display: inline-block; background: green; color: white; padding: 12px 20px; margin: 10px; text-decoration: none; border-radius: 8px;">
-      Pay with Cash App
-    </a>
+  <div>
+    <a href="https://www.paypal.me/YourPayPalUsername" target="_blank" class="button paypal">Pay with PayPal</a>
+    <a href="https://cash.app/$YourCashAppTag" target="_blank" class="button cashapp">Pay with Cash App</a>
   </div>
 
-  <a href="index.html" style="color: #00aced;">Go back to Home</a>
-</body>
-<a href="index.html" style="color: #00aced;">Go back to Home</a>
-
-  <!-- Paystack Payment Button -->
   <h3 style="margin-top: 30px;">Or Pay with Card or Bank Transfer</h3>
-  <button type="button" onclick="payWithPaystack()" style="padding: 10px 20px; background-color: #0a66c2; color: white; border: none; cursor: pointer;">
-    Pay with Paystack
-  </button>
+  <button class="paystack" onclick="payWithPaystack()">Pay with Paystack</button>
 
+  <br><br>
+  <a href="index.html" style="color: #00aced;">Go back to Home</a>
+
+  <!-- Paystack Script -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
     function payWithPaystack() {
@@ -31,9 +53,9 @@
         amount: 50000 * 100,
         currency: 'NGN',
         ref: '' + Math.floor(Math.random() * 1000000000 + 1),
-        callback: function(response){
+        callback: function(response) {
           window.location.href = "success.html";
-},
+        },
         onClose: function() {
           alert('Payment window closed.');
         }
@@ -41,4 +63,6 @@
       handler.openIframe();
     }
   </script>
+
 </body>
+</html>
