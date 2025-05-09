@@ -1,80 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QVC-Cart</title>
+  <title>QVC-cart</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <header class="qvc-header">
-    <div class="logo">
-      <img src="images/qvc-logo.png" alt="QVC-cart Logo" />
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search for products..." />
-      <button>Search</button>
-    </div>
-    <div class="cart-icon">
-      <a href="#"><img src="images/cart-icon.png" alt="Cart" /></a>
-    </div>
-  </header>
-
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Cart</a>
-    <a href="#">Contact</a>
-  </nav>
-
-  <section class="filters">
-    <label>Sort By:
-      <select>
-        <option>Price: Low to High</option>
-        <option>Price: High to Low</option>
-        <option>Newest</option>
-      </select>
-    </label>
-  </section>
-
-  <section class="products">
-    <div class="product-card">
-      <div class="image-carousel">
-        <div class="carousel-btn prev-btn">&#10094;</div>
-        <div class="carousel-btn next-btn">&#10095;</div>
-        <div class="carousel-track">
-          <img src="images/iphone1.jpg" alt="iPhone 12 Front" />
-          <img src="images/iphone2.jpg" alt="iPhone 12 Back" />
-          <img src="images/iphone3.jpg" alt="iPhone 12 Side" />
+  <header class="navbar">
+    <div class="logo">QVC-cart</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#products">Products</a>
+      <a href="#cart">Cart</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <input type="text" class="search-bar" placeholder="Search products...">
+  </header>  <section class="hero">
+    <h1>Find the Best Deals on QVC-cart</h1>
+    <p>Phones, electronics, fashion and more – all in one place!</p>
+  </section>  <main class="product-section" id="products">
+    <h2>Featured Products</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="image-carousel">
+          <img src="iphone1.jpg" alt="iPhone 12 front" class="active">
+          <img src="iphone2.jpg" alt="iPhone 12 back">
+          <img src="iphone3.jpg" alt="iPhone 12 box">
         </div>
+        <div class="carousel-buttons">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <h3>Apple iPhone 12 - 64GB</h3>
+        <p>Condition: UK Used<br>Price: ₦250,000<br>Colors: Black, White, Blue</p>
+        <button class="buy-now">Buy Now</button>
       </div>
-      <div class="product-details">
-        <h2>iPhone 12 (64GB) - Blue</h2>
-        <p class="price">₦270,000</p>
-        <p class="description">Unlocked | 6.1-inch display | Dual 12MP cameras | A14 Bionic chip</p>
-        <button>Add to Cart</button>
-      </div>
+      <!-- You can add more product cards here -->
     </div>
-  </section>
+  </main>  <footer>
+    <div>
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="#">Return Policy</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Help Center</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Email: support@qvc-cart.com</p>
+      <p>Phone: +234 800 123 4567</p>
+    </div>
+  </footer>  <script>
+    const carousels = document.querySelectorAll('.image-carousel');
+    carousels.forEach((carousel) => {
+      const images = carousel.querySelectorAll('img');
+      let index = 0;
 
-  <footer>
-    <p>&copy; 2025 QVC-Cart. All rights reserved.</p>
-  </footer>
+      const showImage = (i) => {
+        images.forEach(img => img.classList.remove('active'));
+        images[i].classList.add('active');
+      };
 
-  <script>
-    const track = document.querySelector('.carousel-track');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+      const prevBtn = carousel.nextElementSibling.querySelector('.prev');
+      const nextBtn = carousel.nextElementSibling.querySelector('.next');
 
-    nextBtn.addEventListener('click', () => {
-      track.scrollBy({ left: 320, behavior: 'smooth' });
+      prevBtn.addEventListener('click', () => {
+        index = (index > 0) ? index - 1 : images.length - 1;
+        showImage(index);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        index = (index < images.length - 1) ? index + 1 : 0;
+        showImage(index);
+      });
     });
-
-    prevBtn.addEventListener('click', () => {
-      track.scrollBy({ left: -320, behavior: 'smooth' });
-    });
-  </script>
-
-</body>
+  </script></body>
 </html>
