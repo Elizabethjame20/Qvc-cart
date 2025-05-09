@@ -1,85 +1,198 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QVC-cart</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QVC-cart Product Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+    }
+
+    .product-card {
+      max-width: 400px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 16px;
+    }
+
+    .image-carousel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-carousel img {
+      width: 100%;
+      display: none;
+      transition: opacity 0.5s ease-in-out;
+      border-radius: 8px;
+    }
+
+    .image-carousel img.active {
+      display: block;
+    }
+
+    .carousel_buttons {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .carousel_buttons button {
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      cursor: pointer;
+      pointer-events: all;
+      font-size: 18px;
+      border-radius: 50%;
+    }
+
+    .dots {
+      text-align: center;
+      margin: 12px 0;
+    }
+
+    .dots span {
+      height: 10px;
+      width: 10px;
+      margin: 0 4px;
+      display: inline-block;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+    }
+
+    .dots span.active {
+      background: #333;
+    }
+
+    h3 {
+      margin: 16px 0 8px;
+      font-size: 20px;
+    }
+
+    p {
+      color: #555;
+      font-size: 14px;
+    }
+
+    .buy-now {
+      display: block;
+      margin: 16px auto 0;
+      background: #ff4500;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .buy-now:hover {
+      background: #e03e00;
+    }
+
+    @media (max-width: 500px) {
+      .product-card {
+        margin: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
- <header class="navbar">
-    <div class="logo">QVC-cart</div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#products">Products</a>
-      <a href="#cart">Cart</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <input type="text" class="search-bar" placeholder="Search products...">
-  </header>  <section class="hero">
-    <h1>Find the Best Deals on QVC-cart</h1>
-    <p>Phones, electronics, fashion and more – all in one place!</p>
-  </section>  <main class="product-section" id="products">
-    <h2>Featured Products</h2>
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="image-carousel">
-          <img src="iphone1.jpg" alt="iPhone 12 front" class="active">
-          <img src="iphone2.jpg" alt="iPhone 12 back">
-          <img src="iphone3.jpg" alt="iPhone 12 box">
-        </div>
-        <div class="carousel-buttons">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <h3>Apple iPhone 12 - 64GB</h3>
-        <p>Condition: UK Used<br>Price: ₦250,000<br>Colors: Black, White, Blue</p>
-        <button class="buy-now">Buy Now</button>
+
+  <div class="product-card">
+    <div class="image-carousel">
+      <img src="iphone1.jpg" alt="iPhone 12 front" class="active">
+      <img src="iphone2.jpg" alt="iPhone 12 back">
+      <img src="iphone3.jpg" alt="iPhone 12 box">
+      <div class="carousel_buttons">
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
       </div>
-      <!-- You can add more product cards here -->
+      <div class="dots"></div>
     </div>
-  </main>  <footer>
-    <div>
-      <h4>Customer Service</h4>
-      <ul>
-        <li><a href="#">Return Policy</a></li>
-        <li><a href="#">Shipping Info</a></li>
-        <li><a href="#">Help Center</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <p>Email: support@qvc-cart.com</p>
-      <p>Phone: +234 800 123 4567</p>
-    </div>
-  </footer>  <script>
-<script>
-const carousels = document.querySelectorAll('.image-carousel');
+    <h3>Apple iPhone 12 – 64GB</h3>
+    <p>Condition: UK Used<br>Price: ₦250,000<br>Colors: Black, White, Blue</p>
+    <button class="buy-now">Buy Now</button>
+  </div>
 
-carousels.forEach((carousel) => {
-  const images = carousel.querySelectorAll('img');
-  let index = 0;
+  <script>
+    const carousels = document.querySelectorAll('.image-carousel');
 
-  const showImage = (i) => {
-    images.forEach(img => img.classList.remove('active'));
-    images[i].classList.add('active');
-  };
+    carousels.forEach((carousel) => {
+      const images = carousel.querySelectorAll('img');
+      const dotsContainer = carousel.querySelector('.dots');
+      const prevBtn = carousel.querySelector('.prev');
+      const nextBtn = carousel.querySelector('.next');
+      let index = 0;
+      let interval;
 
-  const prevBtn = carousel.parentElement.querySelector('.prev');
-  const nextBtn = carousel.parentElement.querySelector('.next');
+      // Create dots
+      images.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => {
+          index = i;
+          showImage(index);
+          resetAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+      });
 
-  prevBtn.addEventListener('click', () => {
-    index = (index - 1 + images.length) % images.length;
-    showImage(index);
-  });
+      const dots = dotsContainer.querySelectorAll('span');
 
-  nextBtn.addEventListener('click', () => {
-    index = (index + 1) % images.length;
-    showImage(index);
-  });
-});
-</script>
-  </script></body>
+      const showImage = (i) => {
+        images.forEach(img => img.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        images[i].classList.add('active');
+        dots[i].classList.add('active');
+      };
+
+      prevBtn.addEventListener('click', () => {
+        index = (index - 1 + images.length) % images.length;
+        showImage(index);
+        resetAutoplay();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        index = (index + 1) % images.length;
+        showImage(index);
+        resetAutoplay();
+      });
+
+      const autoplay = () => {
+        interval = setInterval(() => {
+          index = (index + 1) % images.length;
+          showImage(index);
+        }, 3000);
+      };
+
+      const resetAutoplay = () => {
+        clearInterval(interval);
+        autoplay();
+      };
+
+      carousel.addEventListener('mouseenter', () => clearInterval(interval));
+      carousel.addEventListener('mouseleave', autoplay);
+
+      showImage(index);
+      autoplay();
+    });
+  </script>
+
+</body>
 </html>
