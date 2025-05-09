@@ -1,155 +1,109 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QVC-cart | Online Store</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
-    header { background: #ff4500; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-    header img { height: 50px; }
-    nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 5px; }
+    header { background: #ff4500; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; }
     .hero { padding: 20px; text-align: center; }
-    .product-card { max-width: 400px; margin: 20px auto; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .image-carousel { position: relative; overflow: hidden; }
-    .image-carousel img { width: 100%; display: none; border-radius: 8px; }
-    .image-carousel img.active { display: block; }
-    .carousel_buttons { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); }
-    .carousel_buttons button { background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
-    .dots { text-align: center; margin-top: 10px; }
-    .dots span { height: 10px; width: 10px; background: #ccc; border-radius: 50%; display: inline-block; margin: 0 4px; }
-    .dots span.active { background: #333; }
-    .payment { margin-top: 15px; }
-    .footer { text-align: center; padding: 15px; background: #222; color: #fff; margin-top: 30px; }
-    .add-to-cart { margin-top: 15px; padding: 10px; background: #ff4500; color: #fff; border: none; border-radius: 5px; width: 100%; cursor: pointer; font-size: 16px; }@media (max-width: 600px) {
-  header { flex-direction: column; align-items: flex-start; }
-  nav { width: 100%; display: flex; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
-  nav a { margin: 5px 8px; font-size: 16px; }
-  .product-card { width: 90%; margin: 20px auto; }
-  .hero h1 { font-size: 24px; }
-  .hero p { font-size: 16px; }
-}
-
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+    .product-card { background: #fff; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .product-card img { max-width: 100%; border-radius: 5px; }
+    .add-to-cart { margin-top: 10px; background: #ff4500; color: #fff; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
+    .payment img { height: 30px; margin: 5px; }
+    footer { text-align: center; padding: 15px; background: #222; color: #fff; margin-top: 30px; }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="qvc-cart-logo.png" alt="QVC-cart Logo" />
+    <div><img src="qvc-cart-logo.png" alt="Logo" style="height:40px;"></div>
     <nav>
       <a href="index.html">Home</a>
       <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
       <a href="#products">Products</a>
       <a href="#contact">Contact</a>
     </nav>
-  </header>  <div class="hero">
+  </header>
+
+  <div class="hero">
     <h1>Welcome to QVC-cart</h1>
     <p>Shop electronics, phones (new & used), clothes, and more.</p>
     <p>Select items and pay 50% upfront using PayPal or Cash App.</p>
-  </div>  <section id="products">
-    <div class="product-card">
-      <div class="image-carousel">
-        <img src="iphone1.jpg" alt="iPhone front" class="active">
-        <img src="iphone2.jpg" alt="iPhone back">
-        <img src="iphone3.jpg" alt="iPhone box">
-        <div class="carousel_buttons">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="dots"></div>
-      </div>
-      <h3>Apple iPhone 12 – 64GB</h3>
-      <p>Condition: UK Used<br>Price: ₦250,000<br>Colors: Black, White, Blue</p>
-      <div class="payment">
-        <strong>Pay with:</strong><br>
-        <img src="paypal.png" alt="PayPal" style="height: 30px;"> 
-        <img src="cashapp.png" alt="Cash App" style="height: 30px;">
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-  </section>  <footer class="footer">&copy; 2024 QVC-cart. All rights reserved.</footer>  <script>
-    const carousels = document.querySelectorAll('.image-carousel');
-    carousels.forEach((carousel) => {
-      const images = carousel.querySelectorAll('img');
-      const dotsContainer = carousel.querySelector('.dots');
-      const prevBtn = carousel.querySelector('.prev');
-      const nextBtn = carousel.querySelector('.next');
-      let index = 0;
-      let interval;
+  </div>
 
-      images.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.addEventListener('click', () => {
-          index = i;
-          showImage(index);
-          resetAutoplay();
+  <!-- Live Products from Google Sheet -->
+  <section id="products">
+    <div id="product-list" class="product-grid"></div>
+  </section>
+
+  <footer>
+    &copy; 2024 QVC-cart. All rights reserved.
+  </footer>
+
+  <!-- Load Products from Google Sheets -->
+  <script>
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTd_TVn6MgWEsX7xln2sRQT9BDhzxv8cqALRweLLLu7iU1EAnJkrcQ33BaCJ-d1RE_IyUHH3JPKD_0y/pub?output=csv";
+
+    fetch(sheetURL)
+      .then(res => res.text())
+      .then(data => {
+        const rows = data.split("\n").slice(1);
+        const productList = document.getElementById("product-list");
+
+        rows.forEach(row => {
+          const [name, price, image, category] = row.split(",");
+          if (!name || !price || !image) return;
+
+          const card = document.createElement("div");
+          card.className = "product-card";
+          card.innerHTML = `
+            <img src="${image.trim()}" alt="${name}" />
+            <h3>${name}</h3>
+            <p>₦${parseInt(price).toLocaleString()}</p>
+            <div class="payment">
+              <strong>Pay with:</strong><br>
+              <img src="paypal.png" alt="PayPal">
+              <img src="cashapp.png" alt="Cash App">
+            </div>
+            <button class="add-to-cart" data-name="${name}" data-price="${price}">Add to Cart</button>
+          `;
+          productList.appendChild(card);
         });
-        dotsContainer.appendChild(dot);
+
+        setupCartButtons();
       });
 
-      const dots = dotsContainer.querySelectorAll('span');
+    // Cart Handling
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      const showImage = (i) => {
-        images.forEach(img => img.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        images[i].classList.add('active');
-        dots[i].classList.add('active');
-      };
+    function updateCartCounter() {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cart-count").innerText = count;
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
 
-      prevBtn.addEventListener('click', () => {
-        index = (index - 1 + images.length) % images.length;
-        showImage(index);
-        resetAutoplay();
+    function setupCartButtons() {
+      document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", () => {
+          const name = button.dataset.name;
+          const price = parseInt(button.dataset.price);
+          const existing = cart.find(item => item.name === name);
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            cart.push({ name, price, quantity: 1 });
+          }
+          updateCartCounter();
+          alert(`${name} added to cart.`);
+        });
       });
-
-      nextBtn.addEventListener('click', () => {
-        index = (index + 1) % images.length;
-        showImage(index);
-        resetAutoplay();
-      });
-
-      const autoplay = () => {
-        interval = setInterval(() => {
-          index = (index + 1) % images.length;
-          showImage(index);
-        }, 3000);
-      };
-
-      const resetAutoplay = () => {
-        clearInterval(interval);
-        autoplay();
-      };
-
-      carousel.addEventListener('mouseenter', () => clearInterval(interval));
-      carousel.addEventListener('mouseleave', autoplay);
-
-      showImage(index);
-      autoplay();
-    });
-// Continue from previous carousel script
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  function updateCartCounter() {
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count").innerText = count;
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
-  document.querySelectorAll(".add-to-cart").forEach(button => {
-    button.addEventListener("click", () => {
-      const name = button.closest(".product-card").querySelector("h3").innerText;
-      const priceText = button.closest(".product-card").querySelector("p").innerText;
-      const price = parseInt(priceText.replace(/\D/g, '')); // get number from text
-
-      const existing = cart.find(item => item.name === name);
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({ name, price, quantity: 1 });
-      }
 
       updateCartCounter();
-      alert(`${name} added to cart.`);
-    });
-  });
-
-  updateCartCounter();
+    }
   </script>
+</body>
 </html>
