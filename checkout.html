@@ -45,7 +45,7 @@
     <input type="radio" name="payment" value="Cash App"> Cash App
   </div>
 
-  <button type="submit" class="submit-btn">Complete Order</button>
+  <button type="submit" class="submit-btn">Complete Order via WhatsApp</button>
 </form>
 
   </div>  <script>
@@ -68,8 +68,24 @@
 
     document.getElementById("checkout-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      localStorage.removeItem("cart");
-      window.location.href = "success.html";
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const delivery = document.getElementById("delivery").value;
+      const address = document.getElementById("address").value;
+      const pickup = document.getElementById("pickup").value;
+      const payment = document.querySelector('input[name="payment"]:checked')?.value;
+
+      let message = `Hello, my name is ${name}.\nEmail: ${email}\nDelivery: ${delivery}`;
+      if (delivery === 'Home Delivery') {
+        message += `\nAddress: ${address}`;
+      } else if (delivery === 'Pickup') {
+        message += `\nPickup Note: ${pickup}`;
+      }
+      message += `\nPayment Method: ${payment}`;
+
+      const encoded = encodeURIComponent(message);
+      window.location.href = `https://wa.me/2348130693659?text=${encoded}`;
     });
   </script></body>
 </html>
