@@ -1,68 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Checkout Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | QVC-cart</title>
   <style>
-    body {
-      background: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
-    }
-    a.button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 10px;
-      border-radius: 5px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .paypal { background: #0070ba; }
-    .cashapp { background: green; }
-    .paystack { background: #0a66c2; border: none; cursor: pointer; }
-    h1, h3 { margin-bottom: 20px; }
+    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; }
+    .checkout-container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; }
+    .payment-options { margin-top: 10px; }
+    .submit-btn { margin-top: 20px; background: #ff4500; color: white; padding: 12px; border: none; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; }
   </style>
 </head>
 <body>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+    <form id="checkout-form">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
 
-  <h1>Checkout Page</h1>
-  <p>Choose to pay ₦50K upfront via PayPal or Cash App.</p>
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
 
-  <!-- Payment Buttons -->
-  <div>
-    <a href="https://www.paypal.me/YourPayPalUsername" target="_blank" class="button paypal">Pay with PayPal</a>
-    <a href="https://cash.app/$YourCashAppTag" target="_blank" class="button cashapp">Pay with Cash App</a>
+      <label for="delivery">Delivery Method:</label>
+      <select id="delivery" name="delivery">
+        <option value="Home Delivery">Home Delivery</option>
+        <option value="Pickup">Pickup</option>
+      </select>
+
+      <label>Payment Method:</label>
+      <div class="payment-options">
+        <input type="radio" name="payment" value="PayPal" required> PayPal<br>
+        <input type="radio" name="payment" value="Cash App"> Cash App
+      </div>
+
+      <button type="submit" class="submit-btn">Complete Order</button>
+    </form>
   </div>
 
-  <h3 style="margin-top: 30px;">Or Pay with Card or Bank Transfer</h3>
-  <button class="paystack" onclick="payWithPaystack()">Pay with Paystack</button>
-
-  <br><br>
-  <a href="index.html" style="color: #00aced;">Go back to Home</a>
-
-  <!-- Paystack Script -->
-  <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
-    function payWithPaystack() {
-      var handler = PaystackPop.setup({
-        key: 'YOUR_PUBLIC_KEY_HERE',
-        email: 'customer@email.com',
-        amount: 50000 * 100,
-        currency: 'NGN',
-        ref: '' + Math.floor(Math.random() * 1000000000 + 1),
-        callback: function(response) {
-          window.location.href = "success.html";
-        },
-        onClose: function() {
-          alert('Payment window closed.');
-        }
-      });
-      handler.openIframe();
-    }
+    document.getElementById("checkout-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      localStorage.removeItem("cart");
+      window.location.href = "success.html";
+    });
   </script>
-
 </body>
 </html>
