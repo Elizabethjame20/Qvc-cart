@@ -1,44 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QVC Cart - iPhone 12 Pro</title>
+  <title>QVC-Cart</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
-    <img src="qvc-cart-logo.png" alt="QVC Cart Logo" class="logo" />
-  </header>
-
-  <main class="product-page">
-    <div class="gallery">
-      <img src="iphone1.jpg" alt="Front" />
-      <img src="iphone2.jpg" alt="Back" />
-      <img src="iphone3.jpg" alt="Side" />
+  <header>
+    <div class="logo">QVC-Cart</div>
+    <input type="text" class="search-bar" placeholder="Search products...">
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Cart</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>  <section class="filters">
+    <label>Sort By:
+      <select>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Newest</option>
+      </select>
+    </label>
+  </section>  <section class="products">
+    <div class="product-card">
+      <img src="https://elizabethjame20.github.io/Qvc-cart/images/iphone12-blue.jpg" alt="iPhone 12 Blue">
+      <h2>iPhone 12 (64GB) - Blue</h2>
+      <p class="price">₦270,000</p>
+      <p class="description">Unlocked | 6.1-inch display | Dual 12MP cameras | A14 Bionic chip</p>
+      <button>Add to Cart</button>
     </div>
-
-    <div class="details">
-      <h1>NGN553,538.92 <span class="old-price">NGN814,029.25</span> <span class="discount">32% off</span></h1>
-      <p class="note">Pay in NGN, Shop the World</p>
-      <p class="offer">NGN1,452.20 off over NGN29,043.95</p>
-      <p class="desc">
-        iPhone 12 Pro 6GB RAM 12Pro 128/256/512GB ROM 6.1" Super Retina OLED A14 IOS Face ID Unlocked 5G 98%
-      </p>
-      <p class="rating">5.0 | 22 sold</p>
-
-      <div class="commitment">
-        <p><strong>Shipping:</strong> NGN15,286.80</p>
-        <p><strong>Delivery:</strong> Jun 04 – 16, item ships within 14 days</p>
-        <p><strong>Return & Refund Policy</strong></p>
-        <p><strong>Security & Privacy</strong></p>
-      </div>
-
-      <div class="actions">
-        <button class="add">Add to cart</button>
-        <button class="buy">Buy now</button>
-      </div>
-    </div>
-  </main>
+    <!-- Add more product cards here -->
+  </section>  <footer>
+    <p>&copy; 2025 QVC-Cart. All rights reserved.</p>
+  </footer>
 </body>
 </html>
