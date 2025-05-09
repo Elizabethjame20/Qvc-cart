@@ -8,7 +8,7 @@
   <h1>Our Products</h1>
   <p>Here you can browse all electronics, phones, clothes, and more.</p>
   <a href="index.html" style="color: #00aced;">Go back to Home</a>
-</body>
+<a href="cart.html" style="background-color: #00aced; color: white; padding: 10px; text-decoration: none; border-radius: 5px;">View Cart</a></body>
 </html><div class="product">
     <img src="Product1.jpg" alt="Product 1">
     <h3>Used iPhone 12</h3>
@@ -20,3 +20,15 @@
   <p>₦150000</p>
   <button onclick="addToCart('Used iPhone 12', 150000)">Add to Cart</button>
 </div>
+<br>
+<a href="cart.html" style="background-color: #00aced; color: white; padding: 10px; text-decoration: none; border-radius: 5px;">View Cart</a>
+<script>
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name: name, price: price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " has been added to your cart!");
+  }
+</script>
+</body>
+</html>
