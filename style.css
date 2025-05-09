@@ -1,98 +1,66 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #fff;
   margin: 0;
-  padding: 0;
-  color: #222;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ddd;
+header {
+  background-color: #ff4747;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
 }
 
-.logo {
-  height: 40px;
-}
-
-.product-page {
-  display: flex;
-  flex-direction: column;
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
   padding: 20px;
 }
 
-.gallery {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 20px;
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-.gallery img {
-  height: 150px;
-  border: 1px solid #eee;
+.product-card {
+  background-color: white;
   border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
 }
 
-.details {
-  text-align: center;
+.product-card:hover {
+  transform: translateY(-5px);
 }
 
-.old-price {
-  text-decoration: line-through;
-  color: #888;
+.product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.product-details {
+  padding: 15px;
+}
+
+.product-details h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #ff4747;
+}
+
+.product-details p {
   font-size: 14px;
+  color: #555;
 }
 
-.discount {
-  color: red;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.offer {
-  background: #ffeaea;
-  padding: 10px;
-  margin: 10px 0;
-  color: #d40000;
-  border-radius: 5px;
-}
-
-.desc, .rating, .note {
-  margin: 10px 0;
-}
-
-.commitment {
-  border-top: 1px solid #ddd;
-  margin-top: 20px;
-  padding-top: 10px;
-  text-align: left;
-}
-
-.actions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.add, .buy {
-  padding: 10px 20px;
+.product-details .price {
   font-size: 16px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-.add {
-  background: white;
-  border: 1px solid red;
-  color: red;
-}
-
-.buy {
-  background: red;
-  color: white;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 10px;
 }
