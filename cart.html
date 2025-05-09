@@ -2,82 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Cart - QVC-cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | QVC-cart</title>
   <style>
-    body {
-      background: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    .product {
-      background: #1c1c1c;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-    }
-    button {
-      background: #00aced;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      margin: 5px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .btn-clear {
-      background: red;
-    }
-    .checkout {
-      margin-top: 20px;
-    }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f7f7f7; }
+    h1 { text-align: center; }
+    .cart-container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ccc; }
+    .total { text-align: right; font-size: 18px; margin-top: 10px; }
+    .checkout-btn { display: block; margin-top: 20px; padding: 10px; width: 100%; background: #ff4500; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; text-align: center; }
   </style>
 </head>
 <body>
   <h1>Your Cart</h1>
-  <div id="cart-items"></div>
-
-  <div class="checkout">
-    <h2>Total: <span id="total"></span></h2>
-    <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
-    <br><br>
-    <!-- PayPal button -->
-    <button onclick="alert('Redirecting to PayPal...')">Pay with PayPal</button>
-
-    <!-- Cash App button -->
-    <button onclick="alert('Use $QVCcart on Cash App to pay')">Pay with Cash App</button>
+  <div class="cart-container">
+    <div id="cart-items"></div>
+    <div class="total" id="total"></div>
+    <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
   </div>
 
   <script>
-    function loadCart() {
-      const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-      const container = document.getElementById('cart-items');
-      let total = 0;
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartContainer = document.getElementById("cart-items");
+    const totalEl = document.getElementById("total");
+    let total = 0;
 
-      if (cartItems.length === 0) {
-        container.innerHTML = "<p>Your cart is empty.</p>";
-        document.getElementById('total').textContent = "₦0";
-        return;
-      }
-
-      container.innerHTML = "";
+    if (cartItems.length === 0) {
+      cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+      totalEl.innerText = "";
+      document.querySelector(".checkout-btn").style.display = "none";
+    } else {
       cartItems.forEach(item => {
         total += item.price;
-        const div = document.createElement('div');
-        div.className = "product";
-        div.innerHTML = `<h3>${item.name}</h3><p>₦${item.price.toLocaleString()}</p>`;
-        container.appendChild(div);
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `<span>${item.name}</span><span>₦${item.price.toLocaleString()}</span>`;
+        cartContainer.appendChild(div);
       });
-
-      document.getElementById('total').textContent = "₦" + total.toLocaleString();
+      totalEl.innerText = `Total: ₦${total.toLocaleString()}`;
     }
-
-    function clearCart() {
-      localStorage.removeItem('cart');
-      loadCart();
-    }
-
-    loadCart();
   </script>
 </body>
 </html>
