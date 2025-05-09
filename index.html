@@ -36,7 +36,7 @@
     <img src="qvc-cart-logo.png" alt="QVC-cart Logo" />
     <nav>
       <a href="index.html">Home</a>
-      <a href="cart.html">Cart</a>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
       <a href="#products">Products</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -124,12 +124,32 @@
       showImage(index);
       autoplay();
     });
+// Continue from previous carousel script
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  function updateCartCounter() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart-count").innerText = count;
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
 
-    document.querySelector('.add-to-cart').addEventListener('click', () => {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({ name: 'Apple iPhone 12 – 64GB', price: 250000 });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert('Product added to cart!');
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+      const name = button.closest(".product-card").querySelector("h3").innerText;
+      const priceText = button.closest(".product-card").querySelector("p").innerText;
+      const price = parseInt(priceText.replace(/\D/g, '')); // get number from text
+
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+
+      updateCartCounter();
+      alert(`${name} added to cart.`);
     });
-  </script></body>
+  });
+
+  updateCartCounter();
+  </script>
 </html>
