@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +8,10 @@
     .checkout-container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     h2 { text-align: center; }
     label { display: block; margin-top: 10px; font-weight: bold; }
-    input, select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; }
+    input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; }
     .payment-options { margin-top: 10px; }
     .submit-btn { margin-top: 20px; background: #ff4500; color: white; padding: 12px; border: none; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; }
+    .conditional-field { margin-top: 10px; display: none; }
   </style>
 </head>
 <body>
@@ -19,33 +19,57 @@
     <h2>Checkout</h2>
     <form id="checkout-form">
       <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required>
+      <input type="text" id="name" name="name" required><label for="email">Email Address:</label>
+  <input type="email" id="email" name="email" required>
 
-      <label for="email">Email Address:</label>
-      <input type="email" id="email" name="email" required>
+  <label for="delivery">Delivery Method:</label>
+  <select id="delivery" name="delivery" required>
+    <option value="">-- Select --</option>
+    <option value="Home Delivery">Home Delivery</option>
+    <option value="Pickup">Pickup</option>
+  </select>
 
-      <label for="delivery">Delivery Method:</label>
-      <select id="delivery" name="delivery">
-        <option value="Home Delivery">Home Delivery</option>
-        <option value="Pickup">Pickup</option>
-      </select>
-
-      <label>Payment Method:</label>
-      <div class="payment-options">
-        <input type="radio" name="payment" value="PayPal" required> PayPal<br>
-        <input type="radio" name="payment" value="Cash App"> Cash App
-      </div>
-
-      <button type="submit" class="submit-btn">Complete Order</button>
-    </form>
+  <div class="conditional-field" id="home-address">
+    <label for="address">Delivery Address:</label>
+    <textarea id="address" name="address" placeholder="Enter your full delivery address"></textarea>
   </div>
 
-  <script>
+  <div class="conditional-field" id="pickup-note">
+    <label for="pickup">Pickup Note:</label>
+    <textarea id="pickup" name="pickup" placeholder="Any instructions or contact info for pickup?"></textarea>
+  </div>
+
+  <label>Payment Method:</label>
+  <div class="payment-options">
+    <input type="radio" name="payment" value="PayPal" required> PayPal<br>
+    <input type="radio" name="payment" value="Cash App"> Cash App
+  </div>
+
+  <button type="submit" class="submit-btn">Complete Order</button>
+</form>
+
+  </div>  <script>
+    const delivery = document.getElementById('delivery');
+    const homeField = document.getElementById('home-address');
+    const pickupField = document.getElementById('pickup-note');
+
+    delivery.addEventListener('change', () => {
+      if (delivery.value === 'Home Delivery') {
+        homeField.style.display = 'block';
+        pickupField.style.display = 'none';
+      } else if (delivery.value === 'Pickup') {
+        pickupField.style.display = 'block';
+        homeField.style.display = 'none';
+      } else {
+        pickupField.style.display = 'none';
+        homeField.style.display = 'none';
+      }
+    });
+
     document.getElementById("checkout-form").addEventListener("submit", function(e) {
       e.preventDefault();
       localStorage.removeItem("cart");
       window.location.href = "success.html";
     });
-  </script>
-</body>
+  </script></body>
 </html>
