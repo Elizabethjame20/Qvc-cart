@@ -102,3 +102,44 @@ header {
 .qvc-header .cart-icon img {
   height: 30px;
 }
+.image-carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  gap: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.carousel-track img {
+  width: 300px;
+  height: auto;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  border-radius: 8px;
+} 
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.prev-btn {
+  left: 5px;
+}
+
+.next-btn {
+  right: 5px;
+}
+
+.image-carousel {
+  position: relative;
+  overflow: hidden;
+}
