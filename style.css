@@ -1,142 +1,96 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | QVC-cart</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; margin: 0; }
+    .checkout-container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
+    .payment-options { margin-top: 10px; }
+    .submit-btn { margin-top: 20px; background: #ff4500; color: white; padding: 12px; border: none; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; }
+    .conditional-field { margin-top: 10px; display: none; }@media (max-width: 600px) {
+  body { padding: 10px; }
+  .checkout-container { padding: 15px; }
+  input, select, textarea, .submit-btn { font-size: 16px; }
 }
 
-/* Body Styling */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-  line-height: 1.6;
-}
+  </style>
+</head>
+<body>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+    <form id="checkout-form">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required><label for="email">Email Address:</label>
+  <input type="email" id="email" name="email" required>
 
-/* Header */
-header {
-  background-color: #ff4747;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
+  <label for="delivery">Delivery Method:</label>
+  <select id="delivery" name="delivery" required>
+    <option value="">-- Select --</option>
+    <option value="Home Delivery">Home Delivery</option>
+    <option value="Pickup">Pickup</option>
+  </select>
 
-header h1 {
-  margin-bottom: 0.5rem;
-}
+  <div class="conditional-field" id="home-address">
+    <label for="address">Delivery Address:</label>
+    <textarea id="address" name="address" placeholder="Enter your full delivery address"></textarea>
+  </div>
 
-nav a {
-  color: white;
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: bold;
-}
+  <div class="conditional-field" id="pickup-note">
+    <label for="pickup">Pickup Note:</label>
+    <textarea id="pickup" name="pickup" placeholder="Any instructions or contact info for pickup?"></textarea>
+  </div>
 
-nav a:hover {
-  text-decoration: underline;
-}
+  <label>Payment Method:</label>
+  <div class="payment-options">
+    <input type="radio" name="payment" value="PayPal" required> PayPal<br>
+    <input type="radio" name="payment" value="Cash App"> Cash App
+  </div>
 
-/* Main Section */
-main {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
-}
+  <button type="submit" class="submit-btn">Complete Order via WhatsApp</button>
+</form>
 
-/* Product Grid */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
+  </div>  <script>
+    const delivery = document.getElementById('delivery');
+    const homeField = document.getElementById('home-address');
+    const pickupField = document.getElementById('pickup-note');
 
-/* Product Card */
-.product-card {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  transition: 0.3s ease;
-}
+    delivery.addEventListener('change', () => {
+      if (delivery.value === 'Home Delivery') {
+        homeField.style.display = 'block';
+        pickupField.style.display = 'none';
+      } else if (delivery.value === 'Pickup') {
+        pickupField.style.display = 'block';
+        homeField.style.display = 'none';
+      } else {
+        pickupField.style.display = 'none';
+        homeField.style.display = 'none';
+      }
+    });
 
-.product-card:hover {
-  transform: translateY(-5px);
-}
-/* Carousel */
-.image-carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 250px;
-}
+    document.getElementById("checkout-form").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-.image-carousel img {
-  width: 100%;
-  object-fit: cover;
-  display: none;
-  transition: opacity 0.5s ease;
-}
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const delivery = document.getElementById("delivery").value;
+      const address = document.getElementById("address").value;
+      const pickup = document.getElementById("pickup").value;
+      const payment = document.querySelector('input[name="payment"]:checked')?.value;
 
-.image-carousel img.active {
-  display: block;
-  opacity: 1;
-}
+      let message = `Hello, my name is ${name}.\nEmail: ${email}\nDelivery: ${delivery}`;
+      if (delivery === 'Home Delivery') {
+        message += `\nAddress: ${address}`;
+      } else if (delivery === 'Pickup') {
+        message += `\nPickup Note: ${pickup}`;
+      }
+      message += `\nPayment Method: ${payment}`;
 
-.carousel-buttons {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  padding: 0 1rem;
-}
-
-.carousel-buttons button {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  border-radius: 50%;
-}
-/* Product Info */
-.product-info h2 {
-  font-size: 1.2rem;
-  margin: 1rem 0 0.5rem;
-}
-
-.product-info p {
-  margin: 0.3rem 0;
-}
-
-.price {
-  color: #ff4747;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-/* Button */
-button {
-  background-color: #ff4747;
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  margin-top: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background-color: #e03838;
-}
-
-/* Footer */
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
+      const encoded = encodeURIComponent(message);
+      window.location.href = `https://wa.me/2348130693659?text=${encoded}`;
+    });
+  </script></body>
+</html>
