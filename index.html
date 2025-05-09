@@ -1,34 +1,38 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QVC-Cart</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
 </head>
 <body>
+
   <header class="qvc-header">
-  <div class="logo">
-    <img src="images/qvc-logo.png" alt="QVC-cart Logo">
-  </div>
-  <div class="search-bar">
-    <input type="text" placeholder="Search for products...">
-    <button>Search</button>
-  </div>
-  <div class="cart-icon">
-    <a href="#">
-      <img src="images/cart-icon.png" alt="Cart">
-    </a>
-  </div>
+    <div class="logo">
+      <img src="images/qvc-logo.png" alt="QVC-cart Logo" />
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products..." />
+      <button>Search</button>
+    </div>
+    <div class="cart-icon">
+      <a href="#">
+        <img src="images/cart-icon.png" alt="Cart" />
+      </a>
+    </div>
   </header>
-    <div class="logo">QVC-Cart</div>
-    <input type="text" class="search-bar" placeholder="Search products...">
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Cart</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>  <section class="filters">
+
+  <div class="logo">QVC-Cart</div>
+  <input type="text" class="search-bar" placeholder="Search products..." />
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Cart</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <section class="filters">
     <label>Sort By:
       <select>
         <option>Price: Low to High</option>
@@ -36,14 +40,18 @@
         <option>Newest</option>
       </select>
     </label>
-  </section>  <section class="products">
+  </section>
+
+  <section class="products">
     <div class="product-card">
       <div class="image-carousel">
-  <div class="carousel-track">
-    <img src="iphone1.jpg" alt="iPhone 12 Front">
-    <img src="iphone2.jpg" alt="iPhone 12 Back">
-    <img src="iphone3.jpg" alt="iPhone 12 Side">
-  </div>
+        <div class="carousel-btn prev-btn">&#10094;</div>
+        <div class="carousel-btn next-btn">&#10095;</div>
+        <div class="carousel-track">
+          <img src="iphone1.jpg" alt="iPhone 12 Front" />
+          <img src="iphone2.jpg" alt="iPhone 12 Back" />
+          <img src="iphone3.jpg" alt="iPhone 12 Side" />
+        </div>
       </div>
       <h2>iPhone 12 (64GB) - Blue</h2>
       <p class="price">₦270,000</p>
@@ -51,8 +59,24 @@
       <button>Add to Cart</button>
     </div>
     <!-- Add more product cards here -->
-  </section>  <footer>
+  </section>
+
+  <footer>
     <p>&copy; 2025 QVC-Cart. All rights reserved.</p>
   </footer>
+
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: 320, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
